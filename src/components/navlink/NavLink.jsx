@@ -2,9 +2,9 @@ import React from 'react'
 import styled from 'styled-components';
 import { WEIGHTS } from '../../constants';
 
-const NavLink = ({ children }) => {
+const NavLink = ({ children, ...delegated }) => {
     return (
-        <Wrapper href="#">
+        <Wrapper href="#" {...delegated}>
             <Text data={children}>{children}</Text>
         </Wrapper>
     )
@@ -27,23 +27,27 @@ const Text = styled.span`
     position: relative;
     display: inline-block;
     transition: transform 250ms ease-out;
+    will-change: transform;
 
     &:before {
         position: absolute;
+        will-change: transform;
         display: inline-block;
         transform: translateY(100%);
         transition: transform 250ms ease-out;
-        font-weight: 700;
+        font-weight: ${WEIGHTS.bold};
         content: '${props => props.data}';
     }
 
-    ${Wrapper}:hover &, ${Wrapper}:focus & {
-        transition: transform 150ms;
-        transform: translateY(-100%);
-
-        &:before {
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+        ${Wrapper}:hover &, ${Wrapper}:focus & {
             transition: transform 150ms;
-            transform: translateY(100%);
+            transform: translateY(-100%);
+    
+            &:before {
+                transition: transform 150ms;
+                transform: translateY(100%);
+            }
         }
     }
 `;

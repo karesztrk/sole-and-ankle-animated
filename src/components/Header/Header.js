@@ -8,7 +8,7 @@ import UnstyledButton from '../UnstyledButton';
 import SuperHeader from '../SuperHeader';
 import MobileMenu from '../MobileMenu';
 import VisuallyHidden from '../VisuallyHidden';
-import NavLink from '../navlink/NavLink';
+import NavLink from '../Navlink';
 
 const Header = () => {
   const [showMobileMenu, setShowMobileMenu] = React.useState(false);
