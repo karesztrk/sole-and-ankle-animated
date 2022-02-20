@@ -87,16 +87,19 @@ const ImageBox = styled.div`
 `;
 
 const Image = styled.img`
+  display: block;
   width: 100%;
   border-radius: 16px 16px 4px 4px;
   transition: transform 500ms, filter 500ms;
-  filter: grayscale(30%);
+  filter: saturate(75%);
+  will-change: transform;
+  transform-origin: 50% 75%;
   
-  @media (prefers-reduced-motion: no-preference) {
-    &:hover {
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    ${Link}:hover & , ${Link}:focus & {
       transition: transform 100ms, filter 100ms;
       transform: scale(1.1);
-      filter:  grayscale(0);
+      filter: saturate(120%);
     }
   }
 `;
