@@ -35,7 +35,9 @@ const ShoeCard = ({
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
         <ImageWrapper>
-          <Image alt="" src={imageSrc} />
+          <ImageBox>
+            <Image alt="" src={imageSrc} />
+          </ImageBox>
           {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
           {variant === 'new-release' && (
             <NewFlag>Just released!</NewFlag>
@@ -79,9 +81,24 @@ const ImageWrapper = styled.div`
   position: relative;
 `;
 
+const ImageBox = styled.div`
+  overflow: hidden;
+  border-radius: 16px 16px 4px 4px;
+`;
+
 const Image = styled.img`
   width: 100%;
   border-radius: 16px 16px 4px 4px;
+  transition: transform 500ms, filter 500ms;
+  filter: grayscale(30%);
+  
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover {
+      transition: transform 100ms, filter 100ms;
+      transform: scale(1.1);
+      filter:  grayscale(0);
+    }
+  }
 `;
 
 const Row = styled.div`
